@@ -17,6 +17,13 @@ export const populateDummyData = async () => {
 		description:
 			"Before being born, each person must visit the magical Shop Before Life, where they choose what kind of person they will become down on Earth...",
 	});
+	await Book.create({
+		bookId: 3,
+		title: "The Handmaid's Tale",
+		author: "Margaret Atwood",
+		description:
+			"A futuristic dystopian novel by the Canadian author published in 1985.",
+	});
 	const bookCount = (await Book.findAll()).length;
 	console.log(
 		`📚 ${bookCount} book${bookCount !== 1 ? "s" : ""} added to table`
