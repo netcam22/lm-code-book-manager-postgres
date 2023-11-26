@@ -66,7 +66,7 @@ describe("GET /api/v1/books endpoint", () => {
 
 		// Assert
 		expect(res.body).toEqual(dummyBookData);
-		expect(res.body.length).toEqual(2);
+		expect(res.body.length).toEqual(3);
 	});
 });
 
