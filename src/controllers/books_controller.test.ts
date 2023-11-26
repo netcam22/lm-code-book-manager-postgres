@@ -9,7 +9,7 @@ afterEach(() => {
 	jest.clearAllMocks();
 });
 
-const dummyBookData = [
+export const dummyBookData = [
 	{
 		bookId: 1,
 		title: "The Hobbit",
@@ -138,5 +138,16 @@ describe("POST /api/v1/books endpoint", () => {
 
 		// Assert
 		expect(res.statusCode).toEqual(400);
+	});
+});
+
+describe("DELETE api/v1/books endpoint", () => {
+	test("book successfully deleted when an id is passed in", async () => {
+		//Arrange
+		const mockDeleteBook = jest.spyOn(bookService, "deleteBook");
+		// Act
+		const res = await request(app).delete("/api/v1/books/3");
+		// Assert
+		expect(res.statusCode).toEqual(204);
 	});
 });
