@@ -150,4 +150,12 @@ describe("DELETE api/v1/books endpoint", () => {
 		// Assert
 		expect(res.statusCode).toEqual(204);
 	});
+	test("status code successfully 204 for a book that is not found", async () => {
+		// Arrange
+		jest.spyOn(bookService, "deleteBook");
+		// Act
+		const res = await request(app).delete("/api/v1/books/7");
+		// Assert
+		expect(res.statusCode).toEqual(204);
+	});
 });
