@@ -158,4 +158,16 @@ describe("DELETE api/v1/books endpoint", () => {
 		// Assert
 		expect(res.statusCode).toEqual(204);
 	});
+
+	test("status code 400 when trying to delete ill formatted JSON", async () => {
+		// Arrange - we can enforce throwing an exception by mocking the implementation
+		jest.spyOn(bookService, "deleteBook").mockImplementation(() => {
+			throw new Error("SQLITE_ERROR: no such column: NaN");
+		});
+
+		// Act
+		const res = await request(app).delete("/api/v1/books/x");
+		// Assert
+		expect(res.statusCode).toEqual(400);
+	});
 });
