@@ -24,7 +24,7 @@ export const dummyBookData = [
 			"Before being born, each person must visit the magical Shop Before Life, where they choose what kind of person they will become down on Earth...",
 	},
 	{
-		bookId: 3,
+		bookId: 4,
 		title: "The Handmaid's Tale",
 		author: "Margaret Atwood",
 		description:
@@ -146,7 +146,7 @@ describe("DELETE api/v1/books endpoint", () => {
 		//Arrange
 		const mockDeleteBook = jest.spyOn(bookService, "deleteBook");
 		// Act
-		const res = await request(app).delete("/api/v1/books/3");
+		const res = await request(app).delete("/api/v1/books/4");
 		// Assert
 		expect(res.statusCode).toEqual(204);
 	});
@@ -157,6 +157,18 @@ describe("DELETE api/v1/books endpoint", () => {
 		const res = await request(app).delete("/api/v1/books/7");
 		// Assert
 		expect(res.statusCode).toEqual(204);
+	});
+
+	test("status code 400 when trying to delete ill formatted JSON", async () => {
+		// Arrange - we can enforce throwing an exception by mocking the implementation
+		jest.spyOn(bookService, "deleteBook").mockImplementation(() => {
+			throw new Error("SQLITE_ERROR: no such column: NaN");
+		});
+
+		// Act
+		const res = await request(app).delete("/api/v1/books/x");
+		// Assert
+		expect(res.statusCode).toEqual(400);
 	});
 
 	test("status code 400 when trying to delete ill formatted JSON", async () => {

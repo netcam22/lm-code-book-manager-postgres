@@ -18,7 +18,7 @@ export const populateDummyData = async () => {
 			"Before being born, each person must visit the magical Shop Before Life, where they choose what kind of person they will become down on Earth...",
 	});
 	await Book.create({
-		bookId: 3,
+		bookId: 4,
 		title: "The Handmaid's Tale",
 		author: "Margaret Atwood",
 		description:

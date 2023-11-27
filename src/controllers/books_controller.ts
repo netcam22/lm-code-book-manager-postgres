@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import * as bookService from "../services/books";
-import { error } from "console";
 
 export const getBooks = async (req: Request, res: Response) => {
 	const books = await bookService.getBooks();
@@ -28,7 +27,6 @@ export const saveBook = async (req: Request, res: Response) => {
 	}
 };
 
-// User Story 4 - Update Book By Id Solution
 export const updateBook = async (req: Request, res: Response) => {
 	const bookUpdateData = req.body;
 	const bookId = Number.parseInt(req.params.bookId);
