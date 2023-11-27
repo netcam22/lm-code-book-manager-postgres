@@ -18,7 +18,7 @@ This is the repository for the Minimalist Book Manager API. It provides an API f
 
 ## Usage
 
-The API provides the following endpoints for managing books in an in-memory database:
+The API provides the following endpoints for managing books in a postgresSQL database:
 
 GET "/api/v1/books"
 
