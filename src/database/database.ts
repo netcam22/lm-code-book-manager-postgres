@@ -1,10 +1,12 @@
 import { Dialect, Sequelize } from "sequelize";
 export let sequelize = new Sequelize("sqlite::memory:");
+import {CONFIG} from "../config";
 if (process.env.NODE_ENV !== 'test') {
-    const connString =
-"postgres://bookshopuser:super-secret-password@127.0.0.1:5432/bookshop";
+const connString = `postgres://${CONFIG.dbUserName}:${CONFIG.dbPassword}@${CONFIG.dbHost}/${CONFIG.dbName}`;
 sequelize = new Sequelize(connString);
+}
 /*
+Please note: I have kept these comments below for my own information
 sequelize = new Sequelize(process.env.DB_NAME ??
 'MISSING_DB_NAME_CONFIG',
 
@@ -21,4 +23,3 @@ dialect: (process.env.DB_DIALECT as Dialect) ??
 'postgres',
 });
 */
-}
